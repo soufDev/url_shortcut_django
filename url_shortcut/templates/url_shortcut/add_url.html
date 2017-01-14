@@ -1,0 +1,18 @@
+{% extends "url_shortcut/base.html" %}
+{% block title %}
+    Shorten an URL
+{% endblock %}
+{% block content %}
+
+    <h1>Shorten an URL</h1>
+
+    {% if saving %}
+        <p>The URl has been shortened and saved</p>
+    {% endif %}
+
+    <form action="." method="post" enctype="application/x-www-form-urlencoded">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="">
+    </form>
+{% endblock %}

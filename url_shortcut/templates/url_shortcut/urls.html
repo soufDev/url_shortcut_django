@@ -1,0 +1,35 @@
+{% extends "url_shortcut/base.html" %}
+{% block title %}
+    View All the URL
+{% endblock %}
+{% block content %}
+
+    <h1>View All the URL</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>URL Code</th>
+                <th>Creation Date</th>
+                <th>Identifier</th>
+                <th>Access Number</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for url in urls %}
+            <tr>
+                <td>{{ url.default_url }}</td>
+                <td>{{ url.url_code }}</td>
+                <td>{{ url.create_at }}</td>
+                <td>{{ url.identifier_create }}</td>
+                <td>{{ url.access_number }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                No URLs to Show
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}
