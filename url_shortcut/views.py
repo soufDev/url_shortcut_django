@@ -39,18 +39,27 @@ def view_home(request):
 
 # add new shortcut url
 def view_add_url(request):
-    saving = False
-    form = URlForm(request.POST or None)
-    if form.is_valid():
-        url = MiniURL()
-        url.default_url = form.cleaned_data["url_form"]
-        url.identifier_create = form.cleaned_data["identifier_form"]
-        url.url_code = generate(8)
+    form = URlForm(request.POST)
+    if request.method == "POST":
+        form = URlForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(view_all)
+        else:
+            form = URlForm()
     return render(
         request,
         'url_shortcut/add_url.html',
         {
-            'form': form,
-            'saving': saving
+            'form': form
         }
     )
+
+
+def redirection(request, code):
+    """redirect to the saving url"""
+    mini = get_object_or_404(MiniURL, url_code=code)
+    mini.access_number += 1
+    mini.save()
+
+    return redirect(mini.default_url, permanent=True)

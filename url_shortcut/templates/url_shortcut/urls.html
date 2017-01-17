@@ -18,16 +18,13 @@
         <tbody>
         {% for url in urls %}
             <tr>
-                <td>{{ url.default_url }}</td>
+                <td>{{ truncatewords(url.default_url, 3) }}</td>
                 <td>{{ url.url_code }}</td>
                 <td>{{ url.create_at }}</td>
                 <td>{{ url.identifier_create }}</td>
                 <td>{{ url.access_number }}</td>
             </tr>
-            {% empty %}
-            <tr>
-                No URLs to Show
-            </tr>
+
         {% endfor %}
         </tbody>
 
