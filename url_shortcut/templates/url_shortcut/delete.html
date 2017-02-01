@@ -1,0 +1,19 @@
+{% extends "url_shortcut/base.html" %}
+{% load bootstrap3 %}
+{% block title %}
+    Delete URL
+{% endblock %}
+
+{% block content %}
+    <h3>Are you sure, you want to delete this URL ?</h3>
+
+    <p>
+        {{ url_shortcut.url_code }} -> {{ url_shortcut.default_url }} (created at {{ url_shortcut.create_at|date:'DATE_FORMAT' }})
+    </p>
+    <form action="" method="post" class="col-lg-4 col-lg-offset-4 col-ms-4 col-ms-offset-4 col-xs-12 col-md-4 col-md-offset-4">
+        {{ csrf_tocken }}
+        <input type="submit" class="btn btn-danger" value="yes">
+        <a href="{% url "all_urls" %}" class="btn btn-default">cancel</a>
+    </form>
+    
+{% endblock %}

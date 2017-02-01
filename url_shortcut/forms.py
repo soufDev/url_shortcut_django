@@ -2,7 +2,7 @@ from django import forms
 from .models import MiniURL
 
 
-class URlForm(forms.Form):
+class URlForm(forms.ModelForm):
 
     class Meta:
         model = MiniURL

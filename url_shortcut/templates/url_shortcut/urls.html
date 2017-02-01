@@ -13,16 +13,28 @@
                 <th>Creation Date</th>
                 <th>Identifier</th>
                 <th>Access Number</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
         {% for url in urls %}
             <tr>
-                <td>{{ truncatewords(url.default_url, 3) }}</td>
+                <td>{{ url.default_url }}</td>
                 <td>{{ url.url_code }}</td>
                 <td>{{ url.create_at }}</td>
                 <td>{{ url.identifier_create }}</td>
                 <td>{{ url.access_number }}</td>
+                <td>
+                    <a href="{% url "update_url" url.url_code%}">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url "delete_url" url.url_code%}">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </td>
             </tr>
 
         {% endfor %}
